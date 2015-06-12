@@ -1,0 +1,61 @@
+doctype html
+html
+    head
+        meta(charset='utf-8')
+        meta(name='viewport', content='width=device-width, initial-scale=1.0')
+        title Control de Inventario - RYCLATAM | Sistemas
+        link(rel='stylesheet', href='/stylesheets/bootstrap.min.css')
+        link(rel='stylesheet', href='/stylesheets/font-awesome.min.css')
+        link(rel='stylesheet', href='/stylesheets/custom.css')
+        link(rel='stylesheet', href='/stylesheets/style.css')
+        link(rel='stylesheet', href='/stylesheets/tests.css')
+        link(rel='stylesheet', href='http://fonts.googleapis.com/css?family=Open+Sans')
+    body
+        #wrapper
+            nav.navbar.navbar-default.navbar-cls-top(role='navigation', style='margin-bottom: 0')
+                .navbar-header
+                    button.hidden.navbar-toggle(type='button', data-toggle='collapse', data-target='.sidebar-collapse')
+                        span.sr-only Toggle navigation
+                        span.icon-bar
+                        span.icon-bar
+                        span.icon-bar
+                    a.navbar-brand(href='/') Inventario/test
+                #header-banner
+                    span.glyphicon.glyphicon-user
+                    span &nbsp;#{username} &nbsp;&nbsp;&nbsp;
+                    a.btn.btn-primary.square-btn-adjust.js-back(href='')
+                        i.fa.fa-arrow-circle-left.fa-1x
+                        span &nbsp;&nbsp;Regresar
+                    a.btn.btn-danger.square-btn-adjust(href='/salir')
+                        span.glyphicon.glyphicon-log-out
+                        span &nbsp;&nbsp;Salir
+            // /. NAV TOP
+            #page-wrapper
+                block test-result
+            .panel-footer.text-info
+                p.text-center
+                    span &copy; #{currentYear} &nbsp;&nbsp;
+                        a(href='#acerca') Sistema de Control de Inventario
+                    br
+                    span Reclutamiento y Capacitación LATAM S.A. de C.V.&nbsp;
+                    br
+        #notification.modal.fade
+            .modal-dialog
+                .modal-content
+                    .modal-header
+                        button.close(type='button', data-dismiss='modal')
+                            span(aria-hidden='true') &times;
+                            span.sr-only Cerrar
+                        h4#notification-title.modal-title
+                    .modal-body
+                        #notification-body
+                    .modal-footer
+                        button#notification-cancel.btn.btn-default(type='button', data-dismiss='modal') Cerrar
+                        button#notification-accept.btn.btn-primary(type='button', data-dismiss='modal') Aceptar
+        script(src='/javascripts/jquery.min.js')
+        script(src='/javascripts/bootstrap.min.js')
+        script.
+            $(window).unload(function () {
+                $.ajax({url: '/salir', type: 'get'})
+            });
+        block js-imports

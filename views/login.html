@@ -1,0 +1,38 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Control de Inventario - RYCLATAM | ACCESO</title><link rel="stylesheet" href="/stylesheets/bootstrap.min.css"><link rel="stylesheet" href="/stylesheets/style.css"><link rel="stylesheet" href="/stylesheets/estilos.css"><link rel="stylesheet" href="/stylesheets/font-awesome.min.css"></head><body><div id="wrapper"><nav role="navigation" class="navbar navbar-cls-top"><div class="navbar-header"><a href="/"><img src="/images/logolatam.png" width="90" alt="RYCLATAM logo"></a></div></nav></div><div id="page-inner" class="row"><div class="well col-md-6 col-md-push-4 col-xs-10 col-xs-push-1"><h3 class="text-center">Acceso</h3><hr><div style="margin-right: 0 !important; margin-left: 0 !important" class="row"><div class="col-sm-8 col-sm-push-2"><form role="form" method="post" action="/acceso" class="form-signin"><input type="text" name="inpUsuario" placeholder="Nombre de usuario" required autofocus class="form-control text-center"><br><input type="password" name="inpClave" placeholder="Contraseña" required class="form-control text-center"><br><button type="submit" class="btn btn-primary center-block"><span class="glyphicon glyphicon-lock"></span><span>&nbsp;&nbsp; Iniciar sesión</span></button><br><br></form></div></div><div id="notificacion" class="row hidden"><div class="alert alert-danger col-md-12"><button type="button" data-dismiss="alert" class="close">&times;</button><h4 class="text-center"></h4><div class="text-center"><span id="nota"></span></div></div></div></div></div><div id="credits" tabindex="-1" role="dialog" aria-labelledby="Créditos" aria-hidden="true" class="modal fade"><div class="modal-dialog"><div class="modal-content"><div class="modal-header alert alert-info"><button type="button" data-dismiss="modal" class="close"><span aria-hidden="true">&times;</span><span class="sr-only">Cerrar</span></button><h4 id="credits-title" class="modal-title"><span>Control de Inventario v2.0</span></h4></div><div class="modal-body"></div><div class="modal-footer"><button type="buton" data-dismiss="modal" class="btn btn-primary">Aceptar</button></div></div></div></div><div class="panel-footer text-info navbar-fixed-bottom"><p class="text-center"><span>&copy;  &nbsp;&nbsp;<a href="#acerca">Control de Inventario</a></span><br><span>Reclutamiento y Capacitación LATAM S.A. de C.V.&nbsp;</span><br><input id="status" type="hidden" val="undefined"></p></div><script src="/javascripts/jquery.min.js"></script><script src="/javascripts/bootstrap.min.js"></script><script>$(function () {
+    var valor = $('#status').val();
+    if (valor == 1) {
+        $("#notificacion").removeClass("hidden");
+        $("#notificacion h4").html("Datos incorrectos");
+        $("#nota").html('El nombre de usuario y/o la contraseña son incorrectos.');
+        $("#caja-login input").val("");
+    }
+    if (valor == 2) {
+        $("#notificacion").removeClass("hidden");
+        $("#notificacion h4").html("");
+        $("#nota").html('El usuario ya tiene una sesión activa');
+        $("#caja-login input").val("");
+    }
+    $("a[href='#acerca']").click(function () {
+        var htmlContent = '<div class="row">' +
+                '<div class="col-xs-5 col-xs-push-1">' +
+                '<h3>Créditos:</h3><br>' +
+                '<ul class="list-unstyled">' +
+                '<li>' +
+                '<span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;' +
+                '<strong>Daniel HConstantino</strong>' +
+                '<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' +
+                '<span>Lead application developer</span>' +
+                '</li>' +
+                '<br>' +
+                '<span></span>' +
+                '</div>' +
+                '<div class="col-xs-6"><br><br><br>' +
+                '<h3 class="text-right">PoweredBy:</h3>' +
+                '<img src="/images/expressnodejs.jpg" class="img-responsive" />' +
+                '<img src="/images/tux.jpeg" class="img-responsive" width="80" align="right"/>' +
+                '</div>' +
+                '</div>';
+        $("#credits").modal('show');
+        $(".modal-body").html(htmlContent);
+    });
+});</script></body></html>

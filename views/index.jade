@@ -1,0 +1,156 @@
+extends layout
+
+block menu
+    nav.navbar-default.navbar-side(role='navigation')
+        .sidebar-collapse
+            ul#main-menu.nav
+                li.text-center
+                    a(href='/')
+                        img.user-image.img-responsive(src='/images/logolatam.png' width='70')
+                li
+                    a(href='/empleados')
+                        i.fa.fa-users.fa-2x
+                        | Gestión de empleados
+                li
+                    a(href='/activos')
+                        i.fa.fa-cubes.fa-2x
+                        | Operaciones activos
+                li
+                    a(href='/asignaciones')
+                        i.fa.fa-list-alt.fa-2x
+                        | Asignaciones
+                li
+                    a(href='/reportes')
+                        i.fa.fa-file-text-o.fa-2x
+                        | Reportes
+block content
+    #page-inner
+        //h2 Panel de Admnistración
+        //h5 Acceso: #{lastAccess}
+        //hr
+        .row
+            .col-md-12
+                h2 Panel de Administración
+                h5 Bienvenido(a) #{username}!
+        hr
+        .row
+            .col-md-3.col-sm-6.col-xs-6
+                a
+                    .panel.panel-back.noti-box
+                        span.icon-box.bg-color-green
+                            i.fa.fa-bars
+                        .text-box
+                            p
+                                span.main-text Definir&nbsp;&nbsp;&nbsp;&nbsp;
+                                br
+                                span.text-muted Plantilla
+            .col-md-3.col-sm-6.col-xs-6
+                a
+                    .panel.panel-back.noti-box
+                        span.icon-box.bg-color-blue
+                            i.fa.fa-cube
+                        .text-box
+                            p
+                                span.main-text Agregar&nbsp;&nbsp;
+                                br
+                                span.text-muted Activo
+            .col-md-3.col-sm-6.col-xs-6
+                a
+                    .panel.panel-back.noti-box
+                        span.icon-box.bg-color-brown
+                            i.fa.fa-user-plus
+                        .text-box
+                            p
+                                span.main-text Registrar
+                                br
+                                span.text-muted Empleado
+            .col-md-3.col-sm-6.col-xs-6
+                a
+                    .panel.panel-back.noti-box
+                        span.icon-box.bg-color-red
+                            i.fa.fa-arrows-h
+                        .text-box
+                            p
+                                span.main-text Realizar&nbsp;&nbsp;
+                                br
+                                span.text-muted Asignación
+        hr
+        .row
+            .col-md-5.col-sm-12.col-xs-12
+                .panel.panel-back.noti-box
+                    span.icon-box.bg-color-yellow
+                        i.fa.fa-warning
+                    .text-box
+                        p.main-text Activos no disponibles
+                        hr
+                        p.text-muted
+                            span.text-muted.color-bottom-txt
+                                .table-responsive
+                                    table.table
+                                        thead
+                                            th.text-center Inservibles
+                                            th.text-center Reparación
+                                            th.text-center Extraviados
+                                        tbody
+                                            tr
+                                                td.text-center #{unusableItems}
+                                                td.text-center #{inRepairItems}
+                                                td.text-center #{lostItems}
+                        p.text-muted.text-right
+                            a(href='#reporte-no-disponibles') Mostrar detalle
+            .col-md-4.col-sm-12.col-xs-12
+                .panel.back-dash
+                    i.fa.fa-file-text.fa-3x
+                    strong  &#160; RESUMEN
+                    br
+                    | &nbsp;
+                    .table-responsive
+                        table.table
+                            tbody
+                                tr
+                                    td Activos asignados:
+                                    td #{assignedItems}
+                                tr
+                                    td Activos no disponibles:
+                                    td #{unavailableItems}
+                                tr
+                                    td.text-right Total:
+                                    td
+                                        span.label.label-primary #{totalItems}
+            .col-md-3.col-sm-12.col-xs-12
+                .panel
+                    .main-temp-back
+                        .panel-body
+                            .row
+                                .col-xs-6
+                                    i.fa.fa-puzzle-piece.fa-3x
+                                    | &nbsp;Áreas
+                                .col-xs-6
+                                    .text-temp
+                                        | #{numAreas}
+                .panel
+                    .main-temp-back
+                        .panel-body
+                            .row
+                                .col-xs-6
+                                    i.fa.fa-user.fa-3x
+                                    | &nbsp;Empleados
+                                .col-xs-6
+                                    .text-temp
+                                        | #{numEmployees}
+                .panel
+                    .main-temp-back
+                        .panel-body
+                            .row
+                                .col-xs-6
+                                    i.fa.fa-sitemap.fa-3x
+                                    | &nbsp;Categorías
+                                .col-xs-6
+                                    .text-temp
+                                        | #{numCategories}
+                .panel.panel-back.noti-box
+                    span.icon-box.bg-color-green.set-icon
+                        i.fa.fa-desktop
+                    .text-box
+                        p.main-text Display
+                        p.text-muted Looking Good

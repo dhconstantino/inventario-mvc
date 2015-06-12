@@ -1,0 +1,46 @@
+//-
+    Autor: Daniel HConstantino (@dhconstantino) 
+    Fecha: 12/06/15 11:46
+
+extends layout
+
+block test-result
+    .jumbotron
+        h1 Test: Módulo de usuario
+        br
+        h3 Operación: Eliminar [User.remove()]
+    p.text-muted Resultado
+    .panel
+        if(status == 'ERROR')
+            h1.text-danger #{status}:
+            h3.text-danger #{response}
+            hr
+            .well.text-danger
+                h4 #{errMessage}
+                p
+                    | Código de error: #{errCode}
+                    br
+                    | Mensaje del servidor:
+                    br
+                    | #{err}
+        else if(status == 'OK')
+            .well.text-success
+                h1.text-success #{status}:
+                h3.text-success #{response}
+                hr
+        else if(status == 'ADVERTENCIA')
+            h1.text-warning #{status}:
+            h3.text-warning #{response}
+            hr
+        else
+            h1.text-info #{status}:
+            h3.text-info #{response}
+            hr
+block js-imports
+    script.
+        $(function () {
+            $('a.js-back').click(function (e) {
+                e.preventDefault();
+                parent.history.back(1);
+            });
+        });

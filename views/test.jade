@@ -1,0 +1,49 @@
+//-
+    Autor: Daniel HConstantino (@dhconstantino) 
+    Fecha: 10/06/15 18:04
+
+extends layout
+
+
+block content
+    .panel(style='padding:30px')
+        //- UPDATE TEST
+            h1.text-info #{status}
+            h3.text-info #{response}
+
+        //- INSERT TEST
+        //-if(status=='ERROR')
+            h1.text-danger #{status}:
+            h3.text-danger #{response}
+            hr
+            if(errCode==11000)
+                p.well.alert.alert-danger El usuario ya existe en la Base de Datos.
+            else
+                p.well.alert.alert-danger Ha ocurrido un error inesperado. Detalles del error:
+                p.well #{errMessage}
+        //-else if(status=='ADVERTENCIA')
+            h1.text-Warning #{status}:
+            h3.text-warning #{response}
+
+        //- FIND TEST
+        //-else if(status=='OK')
+        h1.text-success #{status}:
+        h3.text-success Usuario encontrado
+        ul
+            li Nombre: #{response.user.name}
+            li Ap. Paterno: #{response.user.lastname}
+            li Ap. Materno: #{response.user.surname}
+            li &Aacute;rea: #{response.user.area}
+            li Profile: #{response.user.profile}
+            li Estatus: #{response.user.status}
+        //-else
+            h1.text-info DESCONOCIDO
+            h3.text-info Ha ocurrido un error desconocido en el servidor
+block js-imports
+    script.
+        $(function() {
+            $('a.js-back').click(function(e){
+                e.preventDefault();
+                parent.history.back(1);
+            });
+        });

@@ -1,0 +1,46 @@
+#header-banner {
+  color: #fff;
+  float: right;
+  font-size: 16px;
+  margin-right: 20px;
+  margin-top: 15px;
+}
+i {
+  vertical-align: middle;
+}
+a {
+  cursor: pointer;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: none;
+}
+textarea {
+  resize: none;
+}
+.row {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+.action-selected {
+  background: #ddd;
+  padding: 5px;
+}
+.txt-latam {
+  color: #fff;
+  text-transform: uppercase;
+}
+.text-uppercase {
+  text-transform: uppercase;
+}
+.panel-footer {
+  background: #4d4d4d;
+  color: #fff;
+}
+.panel-footer p {
+  font-size: 12px !important;
+}
+.panel-footer a,
+.panel-footer a:hover {
+  color: #fff;
+}

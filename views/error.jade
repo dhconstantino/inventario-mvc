@@ -1,0 +1,45 @@
+extends layout
+
+block menu
+    nav.navbar-default.navbar-side(role='navigation')
+        .sidebar-collapse
+            ul#main-menu.nav
+                li.text-center
+                    a(href='/')
+                        img.user-image.img-responsive(src='/images/logolatam.png' width='70')
+                li
+                    a.js-back(href='')
+                        i.fa.fa-arrow-circle-left.fa-2x
+                        | Regresar
+
+block content
+    .panel(style='padding:30px')
+        if(error.status==404)
+            h1.text-info 404
+                h2.text-danger La página solicitada no ha sido encontrada en el servidor
+                p Algunas posibles causas:
+                    ul
+                        li La dirección está mal escrita
+                        li Está intentando acceder a un recurso que ya ha caducado
+                        li El enlace está desactualizado y ya no es vigente
+                p.text-info
+                    | Por favor verifique que ha escrito correctamente la dirección e intente nuevamente.
+        if(error.status==500)
+            h1.text-info 500
+                h2.text-danger El servidor ha encontrado un error mientras procesaba su solicitud.
+                p
+                    | Este error se ha generado en el servidor y es posible que se encuentre en mantenimiento o esté
+                    | &nbsp;experimentando algún problema técnico. Le sugerimos intentarlo de nuevo más tarde.
+                p.text-info
+                    | Si el problema persiste, favor de reportarlo a sistemas.ryclatam@gmail.com
+        //h1= message
+            h2 #{error.status}
+            pre #{error.stack}
+block js-imports
+    script.
+        $(function() {
+            $('a.js-back').click(function(e){
+                e.preventDefault();
+                parent.history.back(1);
+            });
+        });

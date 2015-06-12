@@ -1,0 +1,120 @@
+doctype html
+html
+    head
+        meta(charset='utf-8')
+        meta(name='viewport', content='width=device-width, initial-scale=1.0')
+        title Control de Inventario - RYCLATAM | Sistemas
+        link(rel='stylesheet', href='/stylesheets/bootstrap.min.css')
+        //link(rel='stylesheet', href='/stylesheets/bootstrapValidator.min.css')
+        link(rel='stylesheet', href='/stylesheets/font-awesome.min.css')
+        //link(rel='stylesheet', href='/stylesheets/morris-0.4.3.min.css')
+        link(rel='stylesheet', href='/stylesheets/jquery.dataTables.min.css')
+        link(rel='stylesheet', href='/stylesheets/custom.css')
+        link(rel='stylesheet', href='/stylesheets/style.css')
+        link(rel='stylesheet', href='http://fonts.googleapis.com/css?family=Open+Sans')
+    body
+        #wrapper
+            nav.navbar.navbar-default.navbar-cls-top(role='navigation', style='margin-bottom: 0')
+                .navbar-header
+                    button.hidden.navbar-toggle(type='button', data-toggle='collapse', data-target='.sidebar-collapse')
+                        span.sr-only Toggle navigation
+                        span.icon-bar
+                        span.icon-bar
+                        span.icon-bar
+                    a.navbar-brand(href='/') Inventario
+                    //-
+                        span.visible-lg lg
+                        span.visible-md md
+                        span.visible-sm sm
+                        span.visible-xs xs
+                #header-banner
+                    span.glyphicon.glyphicon-user
+                    span &nbsp;#{username} &nbsp;&nbsp;&nbsp;
+                    a.btn.btn-danger.square-btn-adjust(href='/salir')
+                        span.glyphicon.glyphicon-log-out
+                        span &nbsp;&nbsp;Salir
+            // /. NAV TOP
+            block menu
+            #page-wrapper
+                block content
+            .panel-footer.text-info
+                p.text-center
+                    span &copy; #{currentYear} &nbsp;&nbsp;
+                        a(href='#acerca') Sistema de Control de Inventario
+                    br
+                    span Reclutamiento y Capacitación LATAM S.A. de C.V.&nbsp;
+                    br
+        #notification.modal.fade
+            .modal-dialog
+                .modal-content
+                    .modal-header
+                        button.close(type='button', data-dismiss='modal')
+                            span(aria-hidden='true') &times;
+                            span.sr-only Cerrar
+                        h4#notification-title.modal-title
+                    .modal-body
+                        #notification-body
+                    .modal-footer
+                        button#notification-cancel.btn.btn-default(type='button', data-dismiss='modal') Cerrar
+                        button#notification-accept.btn.btn-primary(type='button', data-dismiss='modal') Aceptar
+        #confirm.modal.fade
+            .modal-dialog
+                .modal-content
+                    .modal-header
+                        button.close(type='button', data-dismiss='modal')
+                            span(aria-hidden='true') &times;
+                            span.sr-only Cerrar
+                        h4#confirm-title.modal-title
+                    .modal-body
+                        #confirm-body
+                    .modal-footer
+                        button#confirm-cancel.btn.btn-default(type='button', data-dismiss='modal') Cancelar
+                        button#confirm-accept.btn.btn-primary(type='button', data-dismiss='modal') Aceptar
+        #editItem.modal.fade
+            .modal-dialog
+                .modal-content
+                    .modal-header
+                        button.close(type='button', data-dismiss='modal')
+                            span(aria-hidden='true') &times;
+                            span.sr-only Cerrar
+                        h4#editItem-title.modal-title
+                    .modal-body
+                        #editItem-body
+                        table#table-editItem.table
+                            tbody
+                    .modal-footer
+                        button#editItem-cancel.btn.btn-default(type='button', data-dismiss='modal') Cancelar
+                        button#editItem-accept.btn.btn-primary(type='button', data-dismiss='modal') Aceptar
+        #generatePdf.modal.fade
+            .modal-dialog#modalgeneratePdf
+                .modal-body
+                    #loadPdf.progress.progress-striped.active
+                        .progress-bar(role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 100%") Generando reporte
+                            span.sr-only 100% completado
+        #showReport.modal.fade
+            .modal-dialog#modalShowReport
+                .modal-content
+                    .modal-header
+                        button.close(type='button', data-dismiss='modal')
+                            span(aria-hidden='true') &times;
+                            span.sr-only Cerrar
+                        h4#notification-title.modal-title
+                    .modal-body
+                        embed#contenedorPdf(src="/assets/Reporte.pdf" width="900" height="500")
+                    .modal-footer
+                        button#notification-cancel.btn.btn-default(type='button', data-dismiss='modal') Cerrar
+        script(src='/javascripts/jquery.min.js')
+        script(src='/javascripts/bootstrap.min.js')
+        script.
+            $(window).unload(function(){$.ajax({url: '/salir',type: 'get'})});
+        //script(src='/javascripts/jqBootstrapValidation.js')
+        //script(src='/javascripts/bootstrapValidator.min.js')
+        //script(src='/javascripts/jquery.dataTables.min.js')
+        //script(src='/javascripts/main.js')
+        //script(src='/javascripts/webapp.js')
+        //archivos js para socket.io
+        //script(type='text/javascript' src='/socket.io/socket.io.js')
+        //script(type='text/javascript' src='/javascripts/ws_client.js')
+        //archivos js para sesión
+        //script(type='text/javascript' src='/javascripts/idle-timer.js')
+        block js-imports
